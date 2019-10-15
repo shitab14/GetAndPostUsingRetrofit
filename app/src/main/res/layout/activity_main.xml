@@ -62,7 +62,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvGet"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="80dp"
                 android:layout_marginBottom="10dp"
                 android:text="@string/app_name"
                 android:textColor="@android:color/holo_green_dark"
@@ -81,7 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="PATH: 1 or 2"
-                android:padding="10dp"
+                android:padding="5dp"
                 />
 
             <EditText

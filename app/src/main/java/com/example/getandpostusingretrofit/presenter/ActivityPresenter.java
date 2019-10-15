@@ -38,7 +38,7 @@ public class ActivityPresenter {
 
             @Override
             public void onFailed(Throwable throwable) {
-                Toast.makeText(context,"Exception Recieved: "+throwable,Toast.LENGTH_LONG).show();
+                Toast.makeText(context,"Exception Received: "+throwable,Toast.LENGTH_LONG).show();
             }
         });
 
