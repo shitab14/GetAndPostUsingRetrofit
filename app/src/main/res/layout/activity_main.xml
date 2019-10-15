@@ -35,6 +35,7 @@
             android:id="@+id/wvJson"
             android:layout_width="match_parent"
             android:layout_height="250dp"
+            android:paddingTop="20dp"
             android:layout_gravity="top|center_horizontal"/>
 
     </LinearLayout>
@@ -61,17 +62,26 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvGet"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="50dp"
                 android:layout_marginBottom="10dp"
                 android:text="@string/app_name"
                 android:textColor="@android:color/holo_green_dark"
                 android:textSize="18dp" />
 
             <TextView
+                android:id="@+id/tvWarning"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="NO DATA"
+                android:visibility="invisible"
+                android:textColor="@android:color/holo_red_dark"
+                />
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="PATH: 1 or 2"
-                android:padding="20dp"
+                android:padding="10dp"
                 />
 
             <EditText
@@ -91,6 +101,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center_horizontal"
+            android:layout_gravity="bottom"
             android:layout_weight="1">
 
             <Button
@@ -103,13 +114,8 @@
                 android:id="@+id/btnSet"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="POST" />
-
-            <Button
-                android:id="@+id/btnRefresh"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Refresh Page"/>
+                android:text="POST"
+                android:visibility="gone"/>
 
 
         </LinearLayout>

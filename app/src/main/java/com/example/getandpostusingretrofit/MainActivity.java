@@ -25,9 +25,9 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     WebView wvJson;
-    Button btnGet, btnSet, btnRefresh;
+    Button btnGet, btnSet;
     EditText etPathSet;
-    TextView tvUrl;
+    TextView tvUrl, tvWarning;
 
     String data;
     ProgressDialog progressDialog;
@@ -69,12 +69,14 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(List<ModelClass> response) {
                             if (response != null) {
+                                tvWarning.setVisibility(View.INVISIBLE);
                                 generateDataList(response);
                                 setWebView();
                             }
                             else{
                                 Toast.makeText(context,"RESPONSE NULL !!!", Toast.LENGTH_LONG).show();
-                                generateDataList();
+                                rvGet.setVisibility(View.INVISIBLE);
+                                tvWarning.setVisibility(View.VISIBLE);
                                 setWebView();
                             }
 
@@ -143,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void generateDataList(List<ModelClass> body) {
+        rvGet.setVisibility(View.VISIBLE);
         adapter=new MyAdapter(this, body);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context);
         rvGet.setLayoutManager(layoutManager);
@@ -169,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
         tvUrl=findViewById(R.id.tvUrl);
         btnGet=findViewById(R.id.btnGet);
         btnSet=findViewById(R.id.btnSet);
-        btnRefresh=findViewById(R.id.btnRefresh);
+        tvWarning=findViewById(R.id.tvWarning);
     }
 
     private void initVariables() {
