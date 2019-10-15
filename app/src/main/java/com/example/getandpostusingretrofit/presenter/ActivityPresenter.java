@@ -1,6 +1,7 @@
-package com.example.getandpostusingretrofit;
+package com.example.getandpostusingretrofit.presenter;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.example.getandpostusingretrofit.model.ModelClass;
 import com.example.getandpostusingretrofit.network.ApiCall;
@@ -37,7 +38,7 @@ public class ActivityPresenter {
 
             @Override
             public void onFailed(Throwable throwable) {
-
+                Toast.makeText(context,"Exception Recieved: "+throwable,Toast.LENGTH_LONG).show();
             }
         });
 

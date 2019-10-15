@@ -11,7 +11,7 @@ import retrofit2.http.Path;
 
 public interface ClientDataService {
 
-    @GET("/{path_var}/jsonforretrofitimplementation.json")
+    @GET("/jsons/{path_var}/retrofit.json")
     Call<List<ModelClass>> getAll(@Path("path_var") String pathVar);
 
     @POST("/Jsons/jsonforretrofitimplementation.json")

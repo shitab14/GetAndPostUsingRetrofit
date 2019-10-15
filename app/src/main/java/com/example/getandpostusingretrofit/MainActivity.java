@@ -7,16 +7,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.getandpostusingretrofit.adapter.MyAdapter;
 import com.example.getandpostusingretrofit.model.ModelClass;
+import com.example.getandpostusingretrofit.presenter.ActivityPresenter;
 import com.example.getandpostusingretrofit.view.ViewInterfaces;
 
 import java.util.List;
@@ -26,11 +27,12 @@ public class MainActivity extends AppCompatActivity {
     WebView wvJson;
     Button btnGet, btnSet, btnRefresh;
     EditText etPathSet;
+    TextView tvUrl;
 
     String data;
     ProgressDialog progressDialog;
     MyAdapter adapter;
-    RecyclerView recyclerView;
+    RecyclerView rvGet;
 
     //Presenter
     ActivityPresenter activityPresenter;
@@ -66,7 +68,16 @@ public class MainActivity extends AppCompatActivity {
                     activityPresenter.getRetrofitData(pathVar, new ViewInterfaces.ApiView() {
                         @Override
                         public void onSuccess(List<ModelClass> response) {
-                            generateDataList(response);
+                            if (response != null) {
+                                generateDataList(response);
+                                setWebView();
+                            }
+                            else{
+                                Toast.makeText(context,"RESPONSE NULL !!!", Toast.LENGTH_LONG).show();
+                                generateDataList();
+                                setWebView();
+                            }
+
                         }
 
                         @Override
@@ -99,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnRefresh.setOnClickListener(new View.OnClickListener() {
+        /*btnRefresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(etPathSet.getText().toString().isEmpty()){
@@ -109,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
                     setWebView();
                 }
             }
-        });
+        });*/
 
         btnSet.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,9 +144,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void generateDataList(List<ModelClass> body) {
         adapter=new MyAdapter(this, body);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context);
+        rvGet.setLayoutManager(layoutManager);
+        rvGet.setAdapter(adapter);
 
     }
 
@@ -145,14 +156,17 @@ public class MainActivity extends AppCompatActivity {
         wvJson.getSettings().setLoadsImagesAutomatically(true);
         wvJson.getSettings().setJavaScriptEnabled(true);
         wvJson.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
-        wvJson.loadUrl("https://shitab14.github.io/"+etPathSet.getText().toString()+"/jsonforretrofitimplementation.json");
+        String string="https://shitab14.github.io/jsons/"+etPathSet.getText().toString()+"/retrofit.json";
+        wvJson.loadUrl(string);
+        tvUrl.setText(string);
     }
 
     private void setViews() {
 
-        recyclerView=findViewById(R.id.rvGet);
+        rvGet=findViewById(R.id.rvGet);
 
         etPathSet=findViewById(R.id.etPathSet);
+        tvUrl=findViewById(R.id.tvUrl);
         btnGet=findViewById(R.id.btnGet);
         btnSet=findViewById(R.id.btnSet);
         btnRefresh=findViewById(R.id.btnRefresh);

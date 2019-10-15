@@ -21,7 +21,7 @@ public class ApiCall {
         this.context=context;
     }
 
-    public void retrofitCallSetupForGet(String pathVar, final ApiCallBack<List<ModelClass>> apiCallBack){
+    public void retrofitCallSetupForGet(final String pathVar, final ApiCallBack<List<ModelClass>> apiCallBack){
 
         //activityPresenter.getRetrofitData();
 
@@ -34,7 +34,7 @@ public class ApiCall {
             @Override
             public void onResponse(Call<List<ModelClass>> call, Response<List<ModelClass>> response) {
                 //progressDialog.dismiss();
-                Toast.makeText(context, "Works like a charm! ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Works like a charm! For Path:"+pathVar, Toast.LENGTH_SHORT).show();
                 //body=response.body();
                 apiCallBack.onSuccess(response.body());
             }
