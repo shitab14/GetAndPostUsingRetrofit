@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiServiceGenerator {
 
     private static Retrofit retrofit;
-    private static final String BASE_URL = "https://shitab14.github.io/";
+    private static final String BASE_URL = "https://shitab14.github.io";
 
     public static <S> S createService(final String header, Class<S> serviceClass){
         if (retrofit == null) {

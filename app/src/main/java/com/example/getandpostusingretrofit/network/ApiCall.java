@@ -34,9 +34,13 @@ public class ApiCall {
             @Override
             public void onResponse(Call<List<ModelClass>> call, Response<List<ModelClass>> response) {
                 //progressDialog.dismiss();
-                Toast.makeText(context, "Works like a charm! For Path:"+pathVar, Toast.LENGTH_SHORT).show();
-                //body=response.body();
-                apiCallBack.onSuccess(response.body());
+                if(response!=null){
+                    Toast.makeText(context, "Works like a charm! For Path:"+pathVar, Toast.LENGTH_SHORT).show();
+                    apiCallBack.onSuccess(response.body());
+                }
+                else {
+                    Toast.makeText(context, "Null response received", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override

@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.getandpostusingretrofit.Common.CommonUtilities;
 import com.example.getandpostusingretrofit.adapter.MyAdapter;
 import com.example.getandpostusingretrofit.model.ModelClass;
 import com.example.getandpostusingretrofit.presenter.ActivityPresenter;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     Context context;
     String pathVar;
+    boolean internetHas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,16 +49,24 @@ public class MainActivity extends AppCompatActivity {
 
         //loading();
 
-
         initVariables();
         setViews();
+        checkForInternet();
         setListeners();
+    }
+
+    private boolean checkForInternet() {
+        return CommonUtilities.checkInternetStatus(context);
     }
 
     private void setListeners() {
         btnGet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if(!checkForInternet()){
+                    Toast.makeText(context,"Internet Disconnected", Toast.LENGTH_LONG);
+                }
 
                 if(etPathSet.getText().toString().isEmpty()){
                     Toast.makeText(context,"PATH EMPTY",Toast.LENGTH_LONG).show();
