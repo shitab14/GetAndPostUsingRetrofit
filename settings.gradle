@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':network_check_lib'
 rootProject.name='GetAndPostUsingRetrofit'
